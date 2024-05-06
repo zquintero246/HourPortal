@@ -24,7 +24,6 @@
             private String carrera;
 
 
-            @NotEmpty(message)
             private String correoUnab;
             private String contraseña;
             private String idUnab;

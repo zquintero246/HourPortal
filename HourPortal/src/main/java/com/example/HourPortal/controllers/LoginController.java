@@ -3,6 +3,7 @@ package com.example.HourPortal.controllers;
 import com.example.HourPortal.models.User;
 import com.example.HourPortal.repositories.UserRepository;
 import com.example.HourPortal.services.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,7 +45,7 @@ public class LoginController {
     @PostMapping("/Login")
 
     //Metodo que autoentica los usuarios, se piden los parametros correo y contraseña
-    public String autenticar(@RequestParam("correoUnab") String correoUnab, @RequestParam("contraseña") String contraseña, Model model){
+    public String autenticar(@RequestParam("nombre") String nombre, @RequestParam("correoUnab") String correoUnab, @RequestParam("contraseña") String contraseña, Model model, HttpServletRequest request){
 
         log.info("Se está validando");
 
@@ -53,7 +54,10 @@ public class LoginController {
 
         if(user != null){
             log.info("Inicio de sesión exitosa!");
-            return "Home";
+
+            request.getSession().setAttribute("nombreUser", nombre);
+
+            return "redirect:/Home";
         } else {
             log.info("Credenciales inválidas");
 

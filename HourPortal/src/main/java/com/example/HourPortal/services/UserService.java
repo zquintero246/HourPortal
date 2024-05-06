@@ -2,6 +2,7 @@ package com.example.HourPortal.services;
 
 import com.example.HourPortal.models.User;
 import com.example.HourPortal.repositories.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,9 @@ public class UserService {
     public void registroUser(User user) {
         log.info("Se ha registrado un usuario correctamente!");
         userRepository.save(user);
+    }
+
+    public String obtenerNombre(HttpServletRequest request) {
+        return (String) request.getSession().getAttribute("nombre");
     }
 }
