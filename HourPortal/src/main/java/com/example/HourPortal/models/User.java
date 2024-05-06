@@ -6,6 +6,7 @@
     import org.springframework.data.mongodb.core.mapping.Document;
 
 
+
     //Se usa la anotacion document de mongodb para relacionarlo con la collection users en la base de datos
     @Document(collection = "users")
 
@@ -23,7 +24,7 @@
             private String carrera;
 
 
-
+            @NotEmpty(message)
             private String correoUnab;
             private String contraseña;
             private String idUnab;

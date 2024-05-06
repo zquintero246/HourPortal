@@ -30,15 +30,15 @@
                 <div>
                     <label>Nombre:</label>
                     <!-- en este caso los inputs tienen la convecion de thymeleaf field para poder asignar valores al modelo creado en el controlador, digase nombre, semestre, correo, etc -->
-                    <input type="text" th:field="*{nombre}" required/>
+                    <input type="text" th:field="*{nombre}" />
                 </div>
                 <div>
                     <label>Semestre:</label>
-                    <input type="text" th:field="*{semestre}" required/>
+                    <input type="text" th:field="*{semestre}" />
                 </div>
                 <div>
                     <label>Carrera:</label>
-                    <input type="text" th:field="*{carrera}" required/>
+                    <input type="text" th:field="*{carrera}" />
                 </div>
                 <div>
                     <label>Correo Unab:</label>
@@ -50,10 +50,25 @@
                 </div>
                 <div>
                     <label>ID Unab:</label>
-                    <input type="text" th:field="*{idUnab}" required/>
+                    <input type="text" th:field="*{idUnab}" />
                 </div>
                 <button type="submit">Registrarse</button>
+
             </form>
+
+            <div th:if="${errorCampo}" class="alert alert-danger" role="alert">
+                <p th:text="${errorCampo}"></p>
+
+            </div>
+
+            <div th:if="${errorExiste}" class="alert alert-danger" role="alert">
+                <p th:text="${errorExiste}"></p>
+
+            </div>
+            <div th:if="${validacion}" class="alert alert-succes" role="alert">
+                <p th:text="${validacion}"></p>
+
+            </div>
         </div>
 
 
