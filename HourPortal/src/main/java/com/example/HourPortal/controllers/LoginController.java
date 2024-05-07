@@ -2,10 +2,9 @@ package com.example.HourPortal.controllers;
 
 import com.example.HourPortal.models.User;
 import com.example.HourPortal.repositories.UserRepository;
-import com.example.HourPortal.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,21 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 //Anotacion de lombok para poder manejar las notas por consola
 @Slf4j
-
+@AllArgsConstructor
 //el controlador del login
 public class LoginController {
 
     //Se importa el repositorio de los usuarios para acceder a la base de datos
     private final UserRepository userRepository;
 
-
-    //Autowired que sirve para inyectar dependencias
-    @Autowired
-
-    //Constructor para importar el repositorio de usuarios
-    public LoginController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     //Manejo de solicitudes principal para mostrar el login de primeras
     @GetMapping("/")
@@ -45,7 +36,7 @@ public class LoginController {
     @PostMapping("/Login")
 
     //Metodo que autoentica los usuarios, se piden los parametros correo y contraseña
-    public String autenticar(@RequestParam("nombre") String nombre, @RequestParam("correoUnab") String correoUnab, @RequestParam("contraseña") String contraseña, Model model, HttpServletRequest request){
+    public String autenticar(@RequestParam("correoUnab") String correoUnab, @RequestParam("contraseña") String contraseña, Model model){
 
         log.info("Se está validando");
 
@@ -55,9 +46,8 @@ public class LoginController {
         if(user != null){
             log.info("Inicio de sesión exitosa!");
 
-            request.getSession().setAttribute("nombreUser", nombre);
 
-            return "redirect:/Home";
+            return "/Home";
         } else {
             log.info("Credenciales inválidas");
 

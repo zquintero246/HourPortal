@@ -27,7 +27,5 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public String obtenerNombre(HttpServletRequest request) {
-        return (String) request.getSession().getAttribute("nombre");
-    }
-}
+
+ }
